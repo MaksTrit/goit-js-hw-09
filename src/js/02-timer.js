@@ -40,10 +40,15 @@ function timerFoo(e) {
     const hours = document.querySelector('[data-hours]');
     const minutes = document.querySelector('[data-minutes]');
     const seconds = document.querySelector('[data-seconds]');
-    
+
+// Виправлені зауваження
+    const inputEl = document.querySelector("#datetime-picker");
+    inputEl.setAttribute("disabled", "true");    
+    startBtn.setAttribute("disabled", "true");
 
     timerID = setInterval(() => {
         if ((finalDate - Date.now()) < 1000) {
+            inputEl.removeAttribute("disabled");            
             clearInterval(timerID);
         };
         

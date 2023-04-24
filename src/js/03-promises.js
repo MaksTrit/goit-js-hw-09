@@ -13,6 +13,11 @@ function onSubmit(e) {
   const firstDelay = Number(delay.value);
   const stepDelay = Number(step.value);
   const amountPromises = Number(amount.value);
+  
+// Виправив зауваження
+  if (firstDelay < 0 || stepDelay < 0 || amountPromises <= 0) {
+    return Notify.warning(`Please enter correct data`);
+  }
 
 // Цикл викликаючий функцію створення промісів
   for (let i = 1; i <= amountPromises; i += 1) {
@@ -21,10 +26,10 @@ function onSubmit(e) {
 
     createPromise(i, actualDelay)
       .then(({ position, delay }) => {
-        Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`);        
+        Notify.success(`Fulfilled promise ${position} in ${delay}ms`);        
       })
       .catch(({ position, delay }) => {
-        Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`);       
+        Notify.failure(`Rejected promise ${position} in ${delay}ms`);       
       });
   }
 
